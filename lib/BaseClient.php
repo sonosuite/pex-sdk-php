@@ -75,6 +75,7 @@ class BaseClient extends Fingerprinter
             Error::checkMemory($buffer);
             $defer->add(fn () => Lib::get()->Pex_Buffer_Delete(\FFI::addr($buffer)));
 
+            $ft = $req->getFingerprint();
             Lib::get()->Pex_Buffer_Set($buffer, $ft->getBytes(), strlen($ft->getBytes()));
 
             Lib::get()->Pex_StartSearchRequest_SetFingerprint($startReq, $buffer, $status);
